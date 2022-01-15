@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from "react";
 
+import "./App.css";
+import { gsap } from "gsap/all";
 function App() {
+  const name = useRef(null);
+  useEffect(() => {
+    gsap.from([name.current], 1, {
+      delay: 0,
+      ease: "power3.out",
+      y: 64,
+      stagger: {
+        amount: 0.15,
+      },
+    });
+  }, [name]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="app-container">
+      <div className="name-container">
+        <p ref={name} id="name">
+          Arpan Desai
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
     </div>
   );
 }
